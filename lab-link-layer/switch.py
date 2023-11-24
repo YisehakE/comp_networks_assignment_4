@@ -51,9 +51,8 @@ class Switch(BaseHost):
        frame = b''
 
        frame += struct.pack("!H", VLAN_1Q_IDENTIFIER)
-       frame += struct.pack("!")
        zero_16_bit = f'{0:016b}' # https://stackoverflow.com/questions/10411085/converting-integer-to-binary-in-python
-       frame += struct.pack("!H bits", zero_16_bit | vlan_id) # Idea is 0000-0000-0000 | ####-####-#### => 0000 - ####-####-#### where vlan_id is represents the the 12 hashtags!
+       frame += struct.pack("!H", zero_16_bit | vlan_id) # Idea is 0000-0000-0000 | ####-####-#### => 0000 - ####-####-#### where vlan_id is represents the the 12 hashtags!
 
        return frame
     
