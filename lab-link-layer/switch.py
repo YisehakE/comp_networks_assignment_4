@@ -37,11 +37,7 @@ class Switch(BaseHost):
             self._vlans[vlan_val].append(myint) # ------- TODO: check if logic correct
             self._intfs[myint] = vlan_val
       else:
-        self.log(f'No VLAN were configured | VLAN 1 gets interfaces: ')
         for myint in self.physical_interfaces:
-
-          self.log(f'Interface: ' % myint)
-
           vlan_val = 1
           if vlan_val not in self._vlans:
               self._vlans[vlan_val] = []
