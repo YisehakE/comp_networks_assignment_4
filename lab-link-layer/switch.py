@@ -5,6 +5,7 @@ from cougarnet.sim.host import BaseHost
 
 
 import os
+import json
 import struct
 
 VLAN_1Q_IDENTIFIER = 0x8100
