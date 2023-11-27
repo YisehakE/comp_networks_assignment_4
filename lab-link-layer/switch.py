@@ -69,14 +69,14 @@ class Switch(BaseHost):
 
       if dst in self._outgoing:
         if self._outgoing[dst] in self._trunks:
-          frame = dst + src + self.create_802_1Q_frame(vlan) + frame[16:] # Need to send header if sending to outgoing trunk port
+          frame = dst + src + self.create_802_1Q_frame(vlan) + frame[12:] # Need to send header if sending to outgoing trunk port
 
         self.send_frame(frame, self._outgoing[dst])
       else:
         for myint in self.physical_interfaces:
           if intf != myint and (myint in self._trunks or self._intfs[myint] == vlan):
             if myint in self._trunks:
-              fr = dst + src + self.create_802_1Q_frame(vlan) + frame[16:] # Need to send header if sending to other interface(s) that are trunk ports
+              fr = dst + src + self.create_802_1Q_frame(vlan) + frame[12:] # Need to send header if sending to other interface(s) that are trunk ports
 
             else:
               fr = frame # Already stripped from frame when checking on receiving end that this port isn't trunk
